@@ -7,9 +7,10 @@
 \usepackage{graphicx}
 \usepackage{hyperref} %References become hyperlinks.
 \hypersetup{
-    colorlinks = true,
-    linkcolor = {blue},
-	urlcolor = {red}
+	colorlinks = true,
+	linkcolor = {blue},
+	urlcolor = {red},
+	citecolor = {blue}
 }
 
 % In short documents, to remove page numbers.
@@ -28,6 +29,8 @@
 \usepackage{array}
 \usepackage{hhline}
 \usepackage{enumitem} %Customize enumerate and itemize
+\usepackage{comment} % For comment environment
+\usepackage[toc,page]{appendix} % Appendices
 \usepackage{imakeidx} %Analytical index
 \usepackage{xparse} %In order to use ExplSyntax (in older latex versions)
 \usepackage{mathtools}
@@ -38,10 +41,17 @@
 \usepackage{blindtext} %lorem ipsum generator (doesn't support italian and therefore gives some warnings)
 
 %Possible customization of header and footer
-% \setlength{\headheight}{16pt} 
-% \pagestyle{fancy}
-% \fancyhead{}
-% \fancyhead[LE,RO]{\slshape\nouppercase{\leftmark}}
+\setlength{\headheight}{16pt} 
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[LE]{\slshape\nouppercase{\leftmark}}
+\fancyhead[RO]{\slshape\nouppercase{\rightmark}}
+% Author or title
+% \makeatletter 
+% 	\let\titlecopy\@title 
+% 	\let\authorcopy\@author
+% \makeatother
+% \fancyhead[LO, RE]{\slshape\authorcopy}
 
 \usepackage[nameinlink]{cleveref} %References show what kind of thing is being referenced (theorem, lemma, proposition...)
 \newcommand{\crefpairconjunction}{ e }
@@ -59,12 +69,22 @@
 \newtheorem{corollary}[Results]{Corollario}
 \newtheorem{exercise}[Results]{Esercizio}
 
+\newtheorem*{theorem*}{Teorema}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem*{proposition*}{Proposizione}
+\newtheorem*{corollary*}{Corollario}
+\newtheorem*{exercise*}{Esercizio}
+
 \theoremstyle{remark}
 \newtheorem{remark}[Results]{Nota}
+\newtheorem*{remark*}{Nota}
 
 \theoremstyle{definition}
 \newtheorem{definition}[Results]{Definizione}
-\newtheorem*{example}{Esempio}
+\newtheorem{example}[Results]{Esempio}
+
+\newtheorem*{definition*}{Definizione}
+\newtheorem*{example*}{Esempio}
 
 \numberwithin{equation}{section}
 
@@ -133,6 +153,11 @@
 \newcommand{\C}{\ensuremath{\mathbb C}}%Complex numbers
 
 \DeclarePairedDelimiter\abs{\lvert}{\rvert} %Absolute value
+% Restrizione di funzione
+\newcommand{\restricts}[2] {
+	#1 % the function
+	\raisebox{-.3ex}{$|$}_{#2}
+}
 
 
 \newcommand{\de}{\ensuremath{\,\mathrm d}}%Il de degli integrali
