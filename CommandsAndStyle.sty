@@ -98,6 +98,7 @@
 \crefname{remark}{Nota}{Note}
 \crefname{definition}{Definizione}{Definizioni}
 \crefname{section}{Sezione}{Sezioni}
+\crefname{figure}{Figura}{Figure}
 
 \newcommand{\ImplicationProof}[2]{$\text{\ref{#1}}\implies\text{\ref{#2}}$} %Special reference for implication of propositions
 
@@ -119,6 +120,10 @@
 				\@tempcref{#1}%
 			}
 			{
+			\expandafter\IfBeginWith{\@CompleteCounter}{figure}{%La reference è una figura?
+				\@tempcref{#1}%
+			}
+			{
 				\edef\@RefName{\expandafter\@thirdoffive\@RefInfo}%Contiene, se definito, il nome della reference
 				\StrLen{\@RefName}[\@RefNameLen]
 				
@@ -128,6 +133,7 @@
 				{
 					\@tempcref{#1}~(\nameref*{#1})%
 				}
+			}
 			}
 % 			\begin{itemize}
 % 				\item \expandafter\@firstoffive\@mytxt
