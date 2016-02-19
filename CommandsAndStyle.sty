@@ -3,9 +3,10 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
-\usepackage[a4paper,twoside,top=1in, bottom=1.1in, left=1in, right=1in]{geometry} %top,bottom,left,right are margins
+\usepackage[a4paper,twoside,top=1in, bottom=1.1in, left=1in, right=1in]{geometry} % top,bottom,left,right are margins
 \usepackage{graphicx}
-\usepackage{hyperref} %References become hyperlinks.
+\usepackage{caption} % Better handling of empty figure captions.
+\usepackage{hyperref} % References become hyperlinks.
 \hypersetup{
 	colorlinks = true,
 	linkcolor = {blue},
@@ -22,25 +23,25 @@
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{amssymb}
-\usepackage{esint} %For the average integral
-\usepackage{mathrsfs} %Just for cool sigma-algebra
+\usepackage{esint} % For the average integral
+\usepackage{mathrsfs} % Just for cool sigma-algebra
 \usepackage{faktor} % For quotients
 \usepackage{xcolor}
 \usepackage{array}
 \usepackage{hhline}
-\usepackage{enumitem} %Customize enumerate and itemize
+\usepackage{enumitem} % Customize enumerate and itemize
 \usepackage{comment} % For comment environment
 \usepackage[toc,page]{appendix} % Appendices
-\usepackage{imakeidx} %Analytical index
-\usepackage{xparse} %In order to use ExplSyntax (in older latex versions)
+\usepackage{imakeidx} % Analytical index
+\usepackage{xparse} % In order to use ExplSyntax (in older latex versions)
 \usepackage{mathtools}
-\usepackage{fancyhdr} %Header and footer of pages
-\usepackage{ifthen} %Ifthen construct
-\usepackage{forloop} %forloop construct
+\usepackage{fancyhdr} % Header and footer of pages
+\usepackage{ifthen} % Ifthen construct
+\usepackage{forloop} % forloop construct
 \usepackage{xstring} 
-\usepackage{blindtext} %lorem ipsum generator (doesn't support italian and therefore gives some warnings)
+\usepackage{blindtext} % lorem ipsum generator (doesn't support italian and therefore gives some warnings)
 
-%Possible customization of header and footer
+% Possible customization of header and footer
 \setlength{\headheight}{16pt} 
 \pagestyle{fancy}
 \fancyhead{}
@@ -53,16 +54,16 @@
 % \makeatother
 % \fancyhead[LO, RE]{\slshape\authorcopy}
 
-\usepackage[nameinlink]{cleveref} %References show what kind of thing is being referenced (theorem, lemma, proposition...)
+\usepackage[nameinlink]{cleveref} % References show what kind of thing is being referenced (theorem, lemma, proposition...)
 \newcommand{\crefpairconjunction}{ e }
 \newcommand{\crefrangepreconjunction}{da }
 \newcommand{\crefrangeconjunction}{ a }
 \newcommand{\creflastconjunction}{ e }
 
-\newcounter{Results}[section] %Uniform counters for lemmas, theorems, propositions etc
+\newcounter{Results}[section] % Uniform counters for lemmas, theorems, propositions etc
 \renewcommand{\theResults}{\thesection.\arabic{Results}}
 
-%Definition of theorem-like environments
+% Definition of theorem-like environments
 \newtheorem{theorem}[Results]{Teorema}
 \newtheorem{lemma}[Results]{Lemma}
 \newtheorem{proposition}[Results]{Proposizione}
@@ -88,7 +89,7 @@
 
 \numberwithin{equation}{section}
 
-%Names used in references
+% Names used in references
 \crefname{equation}{Equazione}{Equazioni}
 \crefname{theorem}{Teorema}{Teoremi}
 \crefname{lemma}{Lemma}{Lemmi}
@@ -100,10 +101,10 @@
 \crefname{section}{Sezione}{Sezioni}
 \crefname{figure}{Figura}{Figure}
 
-\newcommand{\ImplicationProof}[2]{$\text{\ref{#1}}\implies\text{\ref{#2}}$} %Special reference for implication of propositions
+\newcommand{\ImplicationProof}[2]{$\text{\ref{#1}}\implies\text{\ref{#2}}$} % Special reference for implication of propositions
 
-%Redefinition of cref, in order to have the name of the theorem in case it has one.
-%It's hardcoded and not exactly clean and easy.
+% Redefinition of cref, in order to have the name of the theorem in case it has one.
+% It's hardcoded and not exactly clean and easy.
 \makeatletter
 \ExplSyntaxOn
 \let\@tempcref\cref
@@ -112,22 +113,22 @@
 		\@tempcref{#1}%
 	}
 	{
-		\ifcsname r@#1\endcsname%La reference è definita?
-			\edef\@RefInfo{\csname r@#1\endcsname}%Contiene tutte le informazioni sulla reference
-			\edef\@CompleteCounter{\expandafter\@fourthoffive\@RefInfo}%Contiene il nome espanso del contatore
+		\ifcsname r@#1\endcsname% La reference è definita?
+			\edef\@RefInfo{\csname r@#1\endcsname}% Contiene tutte le informazioni sulla reference
+			\edef\@CompleteCounter{\expandafter\@fourthoffive\@RefInfo}% Contiene il nome espanso del contatore
 			
-			\expandafter\IfBeginWith{\@CompleteCounter}{equation}{%La reference è un'equazione?
+			\expandafter\IfBeginWith{\@CompleteCounter}{equation}{% La reference è un'equazione?
 				\@tempcref{#1}%
 			}
 			{
-			\expandafter\IfBeginWith{\@CompleteCounter}{figure}{%La reference è una figura?
+			\expandafter\IfBeginWith{\@CompleteCounter}{figure}{% La reference è una figura?
 				\@tempcref{#1}%
 			}
 			{
-				\edef\@RefName{\expandafter\@thirdoffive\@RefInfo}%Contiene, se definito, il nome della reference
+				\edef\@RefName{\expandafter\@thirdoffive\@RefInfo}% Contiene, se definito, il nome della reference
 				\StrLen{\@RefName}[\@RefNameLen]
 				
-				\ifthenelse{\@RefNameLen<2}{%Il nome è vuoto o di un solo carattere? (tocca lasciare la possibilità che sia di un solo carattere sennò al carducci non va)
+				\ifthenelse{\@RefNameLen<2}{% Il nome è vuoto o di un solo carattere? (tocca lasciare la possibilità che sia di un solo carattere sennò al carducci non va)
 					\@tempcref{#1}%
 				}
 				{
@@ -151,26 +152,26 @@
 \ExplSyntaxOff
 \makeatother
 
-%Short commands for frequently used number sets.
+% Short commands for frequently used number sets.
 \newcommand{\N}{\ensuremath{\mathbb N}}%Natural numbers
 \newcommand{\Z}{\ensuremath{\mathbb Z}}%Integers
 \newcommand{\Q}{\ensuremath{\mathbb Q}}%Rationals
 \newcommand{\R}{\ensuremath{\mathbb R}}%Real numbers
 \newcommand{\C}{\ensuremath{\mathbb C}}%Complex numbers
 
-\DeclarePairedDelimiter\abs{\lvert}{\rvert} %Absolute value
-% Restrizione di funzione
+\DeclarePairedDelimiter\abs{\lvert}{\rvert} % Absolute value
+% Function restriction
 \newcommand{\restricts}[2] {
 	#1 % the function
 	\raisebox{-.3ex}{$|$}_{#2}
 }
 
 
-\newcommand{\de}{\ensuremath{\,\mathrm d}}%Il de degli integrali
-\newcommand{\Diff}{\ensuremath{\mathrm D}}%Simbolo del differenziale
+\newcommand{\de}{\ensuremath{\,\mathrm d}}% The differential for integrals (\de x)
+\newcommand{\Diff}{\ensuremath{\mathrm D}}% Differential symbol
 \newcommand \eps{\ensuremath{\epsilon}}
 
-%Divergence
+% Divergence
 \let\divsymb\div
 \let\div\undefined
 \DeclareMathOperator{\div}{div}
@@ -184,13 +185,13 @@
 \newcommand{\bigO}{\ensuremath{\mathcal{O}}}
 \newcommand{\smallO}{\ensuremath{\mathrm{o}}}
 
-%Definiamo gli intervalli semiaperti, aperti, chiusi.
+% Open and closed intervals.
 \newcommand{\co}[2]{\ensuremath{\left[\,#1,\,#2\,\right)}}
 \newcommand{\oo}[2]{\ensuremath{\left(\,#1,\,#2\,\right)}}
 \newcommand{\cc}[2]{\ensuremath{\left[\,#1,\,#2\,\right]}}
 \newcommand{\oc}[2]{\ensuremath{\left(\,#1,\,#2\,\right]}}
 
-%Punteggiatura nelle formule
+% Punctuation in math environment
 \ifdefined\virgola 
 	\renewcommand{\virgola}{\ensuremath{\, \text{, }}}
 \else 
