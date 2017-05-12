@@ -162,15 +162,23 @@
 
 \DeclarePairedDelimiter\abs{\lvert}{\rvert} % Absolute value
 \DeclarePairedDelimiter\norm{\lVert}{\rVert} % Norm
+\newcommand{\weakto}{\ensuremath{\rightharpoonup}} % Weak convergence
+\newcommand{\weakstarto}{\ensuremath{\stackrel{*}{\rightharpoonup}}} % Weak-* convergence
+\newcommand{\scalprod}[2]{\ensuremath{\langle #1, #2\rangle}} % Scalar product
+\newcommand{\Haus}{\ensuremath{\mathcal H}} % Hausdorff measure
+\newcommand{\Leb}{\ensuremath{\mathcal L}} % Lebesgue measure
 
 % Function restriction
 \newcommand{\restricts}[2] {
 	#1 % the function
 	\raisebox{-.3ex}{$|$}_{#2}
 }
+% This other definition might be better...
+% \newcommand{\rest}{%
+%   \,\raisebox{-.127ex}{\reflectbox{\rotatebox[origin=br]{-90}{$\lnot$}}}\,%
+% }
 
 \renewcommand{\complement}{\ensuremath{\mathsf{c}}} % Complement of a set
-
 
 \newcommand{\de}{\ensuremath{\,\mathrm d}}% The differential for integrals (\de x)
 \newcommand{\Diff}{\ensuremath{\mathrm D}}% Differential symbol
@@ -204,3 +212,5 @@
 \fi
 \newcommand{\puntovirgola}{\ensuremath{\, \text{; }}}
 \newcommand{\punto}{\ensuremath{\, \text{. }}}
+
+% Ad-hoc commands should go after this line.
