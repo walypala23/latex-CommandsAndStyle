@@ -1,9 +1,9 @@
-
-\ProvidesPackage{CommandsAndStyle}
+\ProvidesPackage{glaudo_pkg_it}
 
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
-\usepackage[a4paper,twoside,top=1in, bottom=1.1in, left=1in, right=1in]{geometry} % top,bottom,left,right are margins
+% \usepackage[a4paper,twoside,top=1in, bottom=1.1in, left=1in, right=1in]{geometry}
+\usepackage[a4paper,twoside]{geometry}
 \usepackage{graphicx}
 \usepackage{caption} % Better handling of empty figure captions.
 \usepackage{hyperref} % References become hyperlinks.
@@ -39,8 +39,7 @@
 \usepackage{fancyhdr} % Header and footer of pages
 \usepackage{ifthen} % Ifthen construct
 \usepackage{forloop} % forloop construct
-\usepackage{xstring} 
-\usepackage{blindtext} % lorem ipsum generator (doesn't support italian and therefore gives some warnings)
+\usepackage{xstring}
 
 % Possible customization of header and footer
 \setlength{\headheight}{16pt} 
@@ -61,15 +60,16 @@
 \newcommand{\crefrangeconjunction}{ a }
 \newcommand{\creflastconjunction}{ e }
 
-\newcounter{Results}[section] % Uniform counters for lemmas, theorems, propositions etc
-\renewcommand{\theResults}{\thesection.\arabic{Results}}
+\newcounter{results}[section] % Uniform counters for lemmas, theorems, propositions etc
+\renewcommand{\theresults}{\thesection.\arabic{results}}
 
 % Definition of theorem-like environments
-\newtheorem{theorem}[Results]{Teorema}
-\newtheorem{lemma}[Results]{Lemma}
-\newtheorem{proposition}[Results]{Proposizione}
-\newtheorem{corollary}[Results]{Corollario}
-\newtheorem{exercise}[Results]{Esercizio}
+\theoremstyle{plain}
+\newtheorem{theorem}[results]{Teorema}
+\newtheorem{lemma}[results]{Lemma}
+\newtheorem{proposition}[results]{Proposizione}
+\newtheorem{corollary}[results]{Corollario}
+\newtheorem{exercise}[results]{Esercizio}
 
 \newtheorem*{theorem*}{Teorema}
 \newtheorem*{lemma*}{Lemma}
@@ -78,12 +78,12 @@
 \newtheorem*{exercise*}{Esercizio}
 
 \theoremstyle{remark}
-\newtheorem{remark}[Results]{Nota}
+\newtheorem{remark}[results]{Nota}
 \newtheorem*{remark*}{Nota}
 
 \theoremstyle{definition}
-\newtheorem{definition}[Results]{Definizione}
-\newtheorem{example}[Results]{Esempio}
+\newtheorem{definition}[results]{Definizione}
+\newtheorem{example}[results]{Esempio}
 
 \newtheorem*{definition*}{Definizione}
 \newtheorem*{example*}{Esempio}
@@ -174,16 +174,12 @@
 	#1 % the function
 	\raisebox{-.3ex}{$|$}_{#2}
 }
-% This other definition might be better...
-% \newcommand{\rest}{%
-%   \,\raisebox{-.127ex}{\reflectbox{\rotatebox[origin=br]{-90}{$\lnot$}}}\,%
-% }
 
 \renewcommand{\complement}{\ensuremath{\mathsf{c}}} % Complement of a set
 
 \newcommand{\de}{\ensuremath{\,\mathrm d}}% The differential for integrals (\de x)
-\newcommand{\Diff}{\ensuremath{\mathrm D}}% Differential symbol
-\newcommand \eps{\ensuremath{\epsilon}}
+\newcommand{\diff}{\ensuremath{\mathrm D}}% Differential symbol
+\newcommand{\eps}{\ensuremath{\epsilon}}
 \newcommand{\id}{\ensuremath{\mathds{1}}}% Identity.
 \newcommand{\emptyparam}{\ensuremath{\,\cdot\,}}% Empty parameter (a dot).
 \newcommand{\defeq}{\ensuremath{\coloneqq}}% Equal in a definition.
@@ -200,8 +196,9 @@
 \DeclareMathOperator{\supp}{supp}
 \newcommand \lapl{\ensuremath{\grad^2}}
 
-\newcommand{\bigO}{\ensuremath{\mathcal{O}}}
-\newcommand{\smallO}{\ensuremath{\mathrm{o}}}
+% Big and small O notation.
+\newcommand{\bigo}{\ensuremath{\mathcal{O}}}
+\newcommand{\smallo}{\ensuremath{\mathrm{o}}}
 
 % Open and closed intervals.
 \newcommand{\co}[2]{\ensuremath{\left[\,#1,\,#2\,\right)}}
@@ -209,13 +206,17 @@
 \newcommand{\cc}[2]{\ensuremath{\left[\,#1,\,#2\,\right]}}
 \newcommand{\oc}[2]{\ensuremath{\left(\,#1,\,#2\,\right]}}
 
+% Argmin and Argmax
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
 % Punctuation in math environment
-\ifdefined\virgola 
-	\renewcommand{\virgola}{\ensuremath{\, \text{, }}}
+\ifdefined\comma 
+	\renewcommand{\comma}{\ensuremath{\, \text{, }}}
 \else 
-	\newcommand{\virgola}{\ensuremath{\, \text{, }}}
+	\newcommand{\comma}{\ensuremath{\, \text{, }}}
 \fi
-\newcommand{\puntovirgola}{\ensuremath{\, \text{; }}}
-\newcommand{\punto}{\ensuremath{\, \text{. }}}
+\newcommand{\semicolon}{\ensuremath{\, \text{; }}}
+\newcommand{\fullstop}{\ensuremath{\, \text{. }}}
 
 % Ad-hoc commands should go after this line.
