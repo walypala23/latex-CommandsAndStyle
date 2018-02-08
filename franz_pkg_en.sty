@@ -1,4 +1,4 @@
-\ProvidesPackage{glaudo_pkg_en}
+\ProvidesPackage{franz_pkg_en}
 
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
@@ -25,8 +25,8 @@
 \usepackage{amssymb}
 \usepackage{esint} % For the average integral
 \usepackage{mathrsfs} % Just for cool sigma-algebra
-\usepackage{faktor} % For quotients
-\usepackage{dsfont} % For identity.
+% \usepackage{faktor} % For quotients
+\usepackage{dsfont} % For identity
 \usepackage{xcolor}
 \usepackage{array}
 \usepackage{hhline}
@@ -40,6 +40,7 @@
 \usepackage{ifthen} % Ifthen construct
 \usepackage{forloop} % forloop construct
 \usepackage{xstring}
+\usepackage{emptypage} % Leave completely empty the empty pages
 
 % Possible customization of header and footer
 \setlength{\headheight}{16pt} 
@@ -142,52 +143,37 @@
 \ExplSyntaxOff
 \makeatother
 
-% Short commands for frequently used number sets.
-\newcommand{\N}{\ensuremath{\mathbb N}} % Natural numbers
-\newcommand{\Z}{\ensuremath{\mathbb Z}} % Integers
-\newcommand{\Q}{\ensuremath{\mathbb Q}} % Rationals
-\newcommand{\R}{\ensuremath{\mathbb R}} % Real numbers
-\newcommand{\C}{\ensuremath{\mathbb C}} % Complex numbers
-\renewcommand{\S}{\ensuremath{\mathbb S}} % Sphere
+%%%%%%%% Titles style %%%%%%%%%%%%%%%
+\usepackage{titlesec}
 
-\DeclarePairedDelimiter\abs{\lvert}{\rvert} % Absolute value
-\DeclarePairedDelimiter\norm{\lVert}{\rVert} % Norm
-\newcommand{\weakto}{\ensuremath{\rightharpoonup}} % Weak convergence
-\newcommand{\weakstarto}{\ensuremath{\stackrel{*}{\rightharpoonup}}} % Weak-* convergence
-\newcommand{\scalprod}[2]{\ensuremath{\langle #1, #2\rangle}} % Scalar product
-\newcommand{\Haus}{\ensuremath{\mathcal H}} % Hausdorff measure
-\newcommand{\Leb}{\ensuremath{\mathcal L}} % Lebesgue measure
+\titleformat{\chapter}[display]
+{\normalfont\centering}{\MakeUppercase{\chaptertitlename\ \thechapter }}{0pt}{\Large\bfseries\uppercase}[\vspace{2ex}\titlerule]
 
-% Function restriction
-\newcommand{\restricts}[2] {
-	#1 % the function
-	\raisebox{-.3ex}{$|$}_{#2}
-}
+\titleformat{\section}
+{\normalfont\bfseries\large}
+{\thesection.}{0.5em}{}
 
-\renewcommand{\complement}{\ensuremath{\mathsf{c}}} % Complement of a set
-
-\newcommand{\de}{\ensuremath{\,\mathrm d}}% The differential for integrals (\de x)
-\newcommand{\diff}{\ensuremath{\mathrm D}}% Differential symbol
-\newcommand{\eps}{\ensuremath{\epsilon}}
-\newcommand{\id}{\ensuremath{\mathds{1}}}% Identity.
-\newcommand{\emptyparam}{\ensuremath{\,\cdot\,}}% Empty parameter (a dot).
-\newcommand{\defeq}{\ensuremath{\coloneqq}}% Equal in a definition.
+% \titleformat{\section}[display]
+% {\normalfont\Large\centering}{\Large\uppercase}
 
 
-% Divergence
-\let\divsymb\div
-\let\div\undefined
-\DeclareMathOperator{\div}{div}
-\DeclareMathOperator{\tr}{tr}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newcommand{\grad}{\ensuremath{\nabla}}
-\DeclareMathOperator{\graf}{graf}
-\DeclareMathOperator{\supp}{supp}
-\newcommand{\lapl}{\ensuremath{\Delta}}
+% Punctuation in math environment
+\ifdefined\comma 
+        \renewcommand{\comma}{\ensuremath{\, \text{, }}}
+\else 
+        \newcommand{\comma}{\ensuremath{\, \text{, }}}
+\fi
+\newcommand{\semicolon}{\ensuremath{\, \text{; }}}
+\newcommand{\point}{\ensuremath{\, \text{. }}}
 
-% Big and small O notation.
-\newcommand{\bigo}{\ensuremath{\mathcal{O}}}
-\newcommand{\smallo}{\ensuremath{\mathrm{o}}}
+%Short commands for frequently used number sets.
+\newcommand{\N}{\ensuremath{\mathbb N}}%Natural numbers
+\newcommand{\Z}{\ensuremath{\mathbb Z}}%Integers
+\newcommand{\Q}{\ensuremath{\mathbb Q}}%Rationals
+\newcommand{\R}{\ensuremath{\mathbb R}}%Real numbers
+\newcommand{\C}{\ensuremath{\mathbb C}}%Complex numbers
 
 % Open and closed intervals.
 \newcommand{\co}[2]{\ensuremath{\left[\,#1,\,#2\,\right)}}
@@ -195,17 +181,47 @@
 \newcommand{\cc}[2]{\ensuremath{\left[\,#1,\,#2\,\right]}}
 \newcommand{\oc}[2]{\ensuremath{\left(\,#1,\,#2\,\right]}}
 
-% Argmin and Argmax
-\DeclareMathOperator*{\argmin}{arg\,min}
-\DeclareMathOperator*{\argmax}{arg\,max}
+% Big and small O notation.
+\newcommand{\bigO}{\ensuremath{\mathcal{O}}}
+\newcommand{\smallO}{\ensuremath{\mathrm{o}}}
 
-% Punctuation in math environment
-\ifdefined\comma 
-	\renewcommand{\comma}{\ensuremath{\, \text{, }}}
-\else 
-	\newcommand{\comma}{\ensuremath{\, \text{, }}}
-\fi
-\newcommand{\semicolon}{\ensuremath{\, \text{; }}}
-\newcommand{\fullstop}{\ensuremath{\, \text{. }}}
+% Absolute value, norm, scalar product
+\DeclarePairedDelimiter\abs{\lvert}{\rvert} % Absolute value
+\DeclarePairedDelimiter\norm{\lVert}{\rVert} % Norm
+\newcommand{\scal}[2]{\ensuremath{\langle #1 , #2 \rangle}} % Scalar product 
 
-% Ad-hoc commands should go after this line.
+% Basic math commands.
+\newcommand \eps{\ensuremath{\varepsilon}}
+\newcommand{\st}{\ensuremath{\ :\ }} % Such that in formulas.
+\newcommand{\eqdef}{\ensuremath{\coloneqq}} % Equal in a definition.
+\newcommand{\restr}{\ensuremath{\big|_}} % Restriction %TODO: definirlo magari meglio
+\newcommand{\id}{\ensuremath{\mathds{1}}}% Identity
+
+
+% Differential operators.
+\renewcommand{\d}{\ensuremath{\mathrm d}} % differential
+\newcommand{\de}{\ensuremath{\,\mathrm d}} % differntial in integrals
+\let\divsymb\div
+\let\div\undefined
+\newcommand{\div}{\ensuremath{\mathrm{div}}} % Divergence
+\newcommand{\grad}{\ensuremath{\nabla}} % Gradient
+\newcommand{\lapl}{\ensuremath{\Delta}} % Laplacian
+\newcommand{\hess}{\ensuremath{\nabla \de}} % Hessian
+
+
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\graf}{graf}
+\DeclareMathOperator{\supp}{supp}
+% \newcommand \hess{\ensuremath{\grad^2}}
+
+
+% Riemannian geometry
+\newcommand{\DerParz}[2]{\ensuremath{\frac{\partial #1}{\partial #2}}} % Partial derivative
+\newcommand{\vf}{\ensuremath{\mathfrak X}} % Vector fields space
+\newcommand{\Lie}{\ensuremath{\mathcal L}} % Lie derivative
+\newcommand{\comm}[2]{\ensuremath{\left[\,#1,\,#2\,\right]}} % Lie parenthesis
+\newcommand{\cov}{\ensuremath{\nabla}} %Covariant derivative
+\newcommand{\II}{\ensuremath{\text{\textup{\uppercase\expandafter{\romannumeral 2}}}}} % Second fundamental form
+\DeclareMathOperator{\Ric}{Ric} % Ricci tensor
+\DeclareMathOperator{\vol}{vol} % Volume
+\DeclareMathOperator{\dist}{dist} % Distance
