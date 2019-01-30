@@ -1,16 +1,36 @@
-\documentclass[a4paper,12pt]{article}
+\documentclass[12pt]{amsart}
+\usepackage[foot]{amsaddr}
 \usepackage{franz_pkg_en}
 % \usepackage{franz_pkg_it}
 
-\title{Template of Main Latex File}
-\author{Giada Franz}
 
 % \makeindex[title=Indice analitico]
 % \indexsetup{level=\section}
  
-\begin{document} 
+\begin{document}
+
+\title[Template of Main Latex File] % running head version
+{Sample Main Latex File\\
+with `AMSART' Documentstyle}
+
+%%
+% See the complete version of this file, testart.tex, for more
+% complicated examples
+%
+\author{Giada Franz}
+\address[Giada Franz]{ETH - Department of Mathematics\\
+        R\"{a}mistrasse 101\\
+        8092 Z\"{u}rich\\
+        Switzerland}
+\email[G. Franz]{giada.franz@math.ethz.ch}
+% \thanks{}
+
+\date{\today}
+
+% \subjclass{Primary 05C38, 15A15; Secondary 05A15, 15A18}
+
 \maketitle
-\tableofcontents
+% \tableofcontents
 
 \section{First section}
 \begin{theorem}\label{thm:first_thm}

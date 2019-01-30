@@ -46,12 +46,16 @@
 \usepackage{xstring}
 \usepackage{emptypage} % Leave completely empty the empty pages
 
+% Tikz packages
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes,patterns}
+
 % Possible customization of header and footer
-\setlength{\headheight}{16pt} 
-\pagestyle{fancy}
-\fancyhead{}
-\fancyhead[LE]{\slshape\nouppercase{\leftmark}}
-\fancyhead[RO]{\slshape\nouppercase{\rightmark}}
+% \setlength{\headheight}{16pt} 
+% \pagestyle{fancy}
+% \fancyhead{}
+% \fancyhead[LE]{\slshape\nouppercase{\leftmark}}
+% \fancyhead[RO]{\slshape\nouppercase{\rightmark}}
 % Author or title
 % \makeatletter 
 % 	\let\titlecopy\@title 
@@ -131,13 +135,6 @@
 				}
 			}
 			}
-% 			\begin{itemize}
-% 				\item \expandafter\@firstoffive\@mytxt
-% 				\item \expandafter\@secondoffive\@mytxt
-% 				\item \expandafter\@thirdoffive\@mytxt
-% 				\item \expandafter\@fourthoffive\@mytxt
-% 				\item \expandafter\@fifthoffive\@mytxt
-% 			\end{itemize}
 		\else
 			\@tempcref{#1}
 		\fi
@@ -148,17 +145,14 @@
 \makeatother
 
 %%%%%%%% Titles style %%%%%%%%%%%%%%%
-\usepackage{titlesec}
-
-\titleformat{\chapter}[display]
-{\normalfont\centering}{\MakeUppercase{\chaptertitlename\ \thechapter }}{0pt}{\Large\bfseries\uppercase}[\vspace{2ex}\titlerule]
-
-\titleformat{\section}
-{\normalfont\bfseries\large}
-{\thesection.}{0.5em}{}
-
-% \titleformat{\section}[display]
-% {\normalfont\Large\centering}{\Large\uppercase}
+% \usepackage{titlesec}
+% 
+% \titleformat{\chapter}[display]
+% {\normalfont\centering}{\MakeUppercase{\chaptertitlename\ \thechapter }}{0pt}{\Large\bfseries\uppercase}[\vspace{2ex}\titlerule]
+% 
+% \titleformat{\section}
+% {\normalfont\bfseries\large}
+% {\thesection.}{0.5em}{}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -189,7 +183,7 @@
 \newcommand{\bigO}{\ensuremath{\mathcal{O}}}
 \newcommand{\smallO}{\ensuremath{\mathrm{o}}}
 
-% Absolute value, norm, scalar product
+% Absolute value, norm, scalar product.
 \DeclarePairedDelimiter\abs{\lvert}{\rvert} % Absolute value
 \DeclarePairedDelimiter\norm{\lVert}{\rVert} % Norm
 \newcommand{\scal}[2]{\ensuremath{\langle #1 , #2 \rangle}} % Scalar product 
@@ -201,6 +195,10 @@
 \newcommand{\restr}{\ensuremath{\big|_}} % Restriction %TODO: definirlo magari meglio
 \newcommand{\id}{\ensuremath{\mathds{1}}}% Identity
 
+% Basic math operators.
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\graf}{graf}
+\DeclareMathOperator{\supp}{supp}
 
 % Differential operators.
 \renewcommand{\d}{\ensuremath{\mathrm d}} % differential
@@ -212,20 +210,22 @@
 \newcommand{\lapl}{\ensuremath{\Delta}} % Laplacian
 \newcommand{\hess}{\ensuremath{\nabla \de}} % Hessian
 
-
-\DeclareMathOperator{\tr}{tr}
-\DeclareMathOperator{\graf}{graf}
-\DeclareMathOperator{\supp}{supp}
-% \newcommand \hess{\ensuremath{\grad^2}}
-
-
-% Riemannian geometry
+% Riemannian geometry commands.
 \newcommand{\DerParz}[2]{\ensuremath{\frac{\partial #1}{\partial #2}}} % Partial derivative
 \newcommand{\vf}{\ensuremath{\mathfrak X}} % Vector fields space
 \newcommand{\Lie}{\ensuremath{\mathcal L}} % Lie derivative
 \newcommand{\comm}[2]{\ensuremath{\left[\,#1,\,#2\,\right]}} % Lie parenthesis
 \newcommand{\cov}{\ensuremath{\nabla}} %Covariant derivative
-\newcommand{\II}{\ensuremath{\text{\textup{\uppercase\expandafter{\romannumeral 2}}}}} % Second fundamental form
+\newcommand{\II}{\ensuremath{\text{\textup{\uppercase\expandafter{\romannumeral 
+2}}}}} % Second fundamental form
+\newcommand{\Scal}{\ensuremath{R}} % Scalar curvature
 \DeclareMathOperator{\Ric}{Ric} % Ricci tensor
 \DeclareMathOperator{\vol}{vol} % Volume
 \DeclareMathOperator{\dist}{dist} % Distance
+
+% Minimal surfaces commands.
+\renewcommand{\L}{\ensuremath{\mathcal L}} % Jacobi operator
+\newcommand{\harm}{\ensuremath{\mathcal H}} % Harmonic forms
+\newcommand{\Haus}{\ensuremath{\mathscr H}} % Hausdorff measure
+\newcommand{\amb}{\ensuremath{\mathcal N}} % Ambient manifold
+\DeclareMathOperator{\ind}{index} % Index
