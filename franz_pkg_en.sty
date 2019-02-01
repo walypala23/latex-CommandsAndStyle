@@ -177,10 +177,15 @@
 \newcommand{\C}{\ensuremath{\mathbb C}}%Complex numbers
 
 % Open and closed intervals.
-\newcommand{\co}[2]{\ensuremath{\left[\,#1,\,#2\,\right)}}
-\newcommand{\oo}[2]{\ensuremath{\left(\,#1,\,#2\,\right)}}
-\newcommand{\cc}[2]{\ensuremath{\left[\,#1,\,#2\,\right]}}
-\newcommand{\oc}[2]{\ensuremath{\left(\,#1,\,#2\,\right]}}
+\DeclarePairedDelimiter\ClOp{[}{)}
+\DeclarePairedDelimiter\OpOp{(}{)}
+\DeclarePairedDelimiter\ClCl{[}{]}
+\DeclarePairedDelimiter\OpCl{(}{]}
+
+\newcommand{\co}[2]{\ensuremath{\ClOp{#1, #2}}}
+\newcommand{\oo}[2]{\ensuremath{\OpOp{#1, #2}}}
+\newcommand{\cc}[2]{\ensuremath{\ClCl{#1, #2}}}
+\newcommand{\oc}[2]{\ensuremath{\OpCl{#1, #2}}}
 
 % Big and small O notation.
 \newcommand{\bigO}{\ensuremath{\mathcal{O}}}
